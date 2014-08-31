@@ -1,0 +1,423 @@
+<!DOCTYPE HTML>
+
+    <html lang="zh-Hans">
+  
+<head>
+  <meta charset="utf-8">
+  
+  <title>Archlinux 下LNMP环境配置以及CGI脚本支持 | huaixiaoz blog</title>
+  <meta name="author" content="huaixiaoz">
+  
+  <meta name="description" content="I am here, as always.">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="Archlinux 下LNMP环境配置以及CGI脚本支持"/>
+  <meta property="og:site_name" content="huaixiaoz blog"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  
+    <meta http-equiv="Content-Language" content="zh-Hans"/>
+  
+
+  <link href="/img/favicon.png" rel="icon">
+  
+    <link rel="apple-touch-icon" href="/img/apple-icon.png">
+    <link rel="apple-touch-icon-precomposed" href="/img/apple-icon.png">
+    
+
+  <link rel="alternate" href="/atom.xml" title="huaixiaoz blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+
+  <style type="text/css">
+  /* Tim Pietrusky advanced checkbox hack (Android <= 4.1.2) */
+body{ -webkit-animation: bugfix infinite 1s; }
+@-webkit-keyframes bugfix { from {padding:0;} to {padding:0;} }
+</style>
+
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-53885599-1', 'auto');
+  ga('send', 'pageview');
+ 
+</script>
+
+
+
+
+  
+    <!-- 360 Font and Baidu CDN in China -->
+    
+      <link href='http://fonts.useso.com/css?family=Open+Sans:300,400|Playball' rel='stylesheet' type='text/css'>
+    
+  <link href='http://apps.bdimg.com/libs/fontawesome/4.0.3/css/font-awesome.min.css' rel='stylesheet' type='text/css'>
+  <script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
+  
+
+
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="padding">
+	<div class="alignleft logo">
+	  <h1><a href="/">huaixiaoz blog</a></h1>
+	</div>
+	<nav id="main-nav" class="alignright">
+		<input type="checkbox" id="toggle" />
+		<label for="toggle" class="toggle" data-open="Main Menu" data-close="Close Menu" onclick><i class="fa fa-bars"></i></label>
+	  <ul class="menu">
+	    
+	      <li><a href="/">Home</a></li>
+	    
+	      <li><a href="/archives">Archives</a></li>
+	    
+	      <li><a href="/about">About</a></li>
+	    
+	    
+	  </ul>
+	</nav>
+	<div class="clearfix"></div>
+</div>
+</header>
+  <div id="page-heading-wrap">
+  	<div class="inner">
+      <div class="padding">
+    		
+          <h1>Archlinux 下LNMP环境配置以及CGI脚本支持</h1>
+          <ul>
+            <li>
+              <span class="heading-span">Posted on: </span>
+              <time datetime="2014-08-15T23:35:53.000Z">8月 16 2014</time>
+            </li>
+            
+              <li>
+                <span class="heading-span">By: </span>
+
+                
+                  <a href="/">huaixiaoz</a>
+                
+
+              </li>
+            
+            <li>
+              <span class="heading-span">With: </span>
+              
+
+                <a href="#ds-thread"><span class="ds-thread-count" data-thread-key="2014/08/16/Archlinux-下LNMP环境配置以及CGI脚本支持/" data-count-type="comments"></span></a>
+              
+            </li>
+          </ul>
+        
+      </div>
+  	</div>
+  </div>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper" class="padding"><article class="post">
+  
+  
+    <div class="post-content">
+  
+      
+      <div class="entry">
+        
+          <h3 id="Archlinux简介">Archlinux简介</h3>
+<ul>
+<li>良好的软件包管理。 <code>pacman</code>: <a href="https://wiki.archlinux.org/index.php/Pacman" target="_blank" rel="external">about pacmaan</a></li>
+<li>KISS原则 ===&gt; <code>Keep it simple and stupid!!</code></li>
+<li>友好的<a href="https://wiki.archlinux.org/index.php" target="_blank" rel="external">wiki</a>指导 .</li>
+<li>软件及时的更新打包，开发社区的氛围等都十分的好。</li>
+<li>默认的最小化安装，突出的良好的可定制环境。绝对是<code>linux user &amp; developer</code>的最佳选择。</li>
+<li>And more …</li>
+</ul>
+<p>Archlinux绝对是linux发行版中比较好的一个。</p>
+<hr>
+<h3 id="LNMP环境安装&amp;配置">LNMP环境安装&amp;配置</h3>
+<ul>
+<li>安装必要软件包：</li>
+</ul>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="preprocessor">#: pacman -Syu // update system and package</span></div><div class="line"><span class="preprocessor">#: pacman -S nginx  mariadb php php-cgi php-fpm fcgiwrap</span></div></pre></td></tr></table></figure>
+
+<a id="more"></a>
+
+
+<ul>
+<li>配置环境：</li>
+</ul>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="preprocessor">#: systemctl enable nginx mysqld php-fpm fcgiwrap</span></div></pre></td></tr></table></figure>
+
+<h4 id="配置php">配置php</h4>
+<p><code>#: vim /etc/php/php.ini</code></p>
+<ul>
+<li>设置要开启的必要的php模块， 如果没有开启，弃掉注释即可启用模块。</li>
+</ul>
+<p>例如： <code>mysql</code>以及<code>odbc</code>模块</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="number">874</span> extension=mysqli.<span class="keyword">so</span></div><div class="line"><span class="number">875</span> extension=mysql.<span class="keyword">so</span></div><div class="line"><span class="number">876</span> extension=odbc.<span class="keyword">so</span></div></pre></td></tr></table></figure>
+
+<h3 id="设置fcgiwrap服务">设置fcgiwrap服务</h3>
+<p><code>#: vim /usr/lib/systemd/system/fcgiwrap.service</code></p>
+<p>修改如下：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"> <span class="number">1</span>  [Unit]</div><div class="line"> <span class="number">2</span>  <span class="variable">Description=</span>Simple CGI Server</div><div class="line"> <span class="number">3</span>  <span class="variable">After=</span>nss-user-lookup.target</div><div class="line"> <span class="number">4</span>  </div><div class="line"> <span class="number">5</span>  [Service]</div><div class="line"> <span class="number">6</span>  <span class="variable">ExecStart=</span>/usr/bin/spawn-fcgi -u http -g http -s /run/fcgiwrap.sock -n  -f  <span class="number">3</span> -- /usr/sbin/fcgiwrap</div><div class="line"> <span class="number">7</span>  <span class="variable">ExecStartPost=</span>/usr/bin/chmod <span class="number">660</span> /run/fcgiwrap.sock</div><div class="line"> <span class="number">8</span>  <span class="variable">PrivateTmp=</span><span class="constant">true</span></div><div class="line"> <span class="number">9</span>  <span class="variable">Restart=</span>on-failure</div><div class="line"><span class="number">10</span>  </div><div class="line"><span class="number">11</span>  [Install]</div><div class="line"><span class="number">12</span>  <span class="variable">WantedBy=</span>multi-user.target</div></pre></td></tr></table></figure>
+
+<p><em><code>Note: no line number included</code></em></p>
+<blockquote>
+<p><del>#: systemctl enbale fcgiwrap.service</del></p>
+</blockquote>
+<h4 id="Nginx_Setup">Nginx Setup</h4>
+<p>修改Nginx配置如下： </p>
+<ul>
+<li>添加 <code>php</code>的 <code>php-fpm</code>支持；</li>
+</ul>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000</span></div><div class="line"><span class="comment">#</span></div><div class="line"><span class="title">location</span> <span class="regexp">~ \.php$</span> {</div><div class="line">    <span class="title">root</span>           /usr/share/nginx/html;</div><div class="line">   <span class="comment"># fastcgi_pass   127.0.0.1:9000;</span></div><div class="line">    <span class="title">index</span> index.php;</div><div class="line">    <span class="title">fastcgi_pass</span>   <span class="url">unix:/run/php-fpm/php-fpm.sock</span>;</div><div class="line">    <span class="comment">#fastcgi_pass   unix:/run/fcgiwrap.sock;</span></div><div class="line">    <span class="title">fastcgi_index</span>  index.php;</div><div class="line">    <span class="title">fastcgi_param</span>  SCRIPT_FILENAME  <span class="variable">$document_root</span><span class="variable">$fastcgi_script_name</span>;</div><div class="line">    <span class="title">include</span>        fastcgi_params;</div><div class="line">   <span class="comment"># include     fastcgi.conf;</span></div><div class="line">    }</div></pre></td></tr></table></figure>
+
+<ul>
+<li>添加 <code>php</code>的 <code>fcgiwrap</code>支持；</li>
+</ul>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="title">location</span> <span class="regexp">~ \.(cgi|pl)$</span> {</div><div class="line">            <span class="title">root</span>           /usr/share/nginx/html;</div><div class="line">           <span class="comment"># fastcgi_pass   127.0.0.1:9000;</span></div><div class="line">            <span class="title">fastcgi_pass</span>   <span class="url">unix:/run/fcgiwrap.sock</span>;</div><div class="line">            <span class="title">index</span> index.cgi;</div><div class="line">            <span class="title">fastcgi_index</span>  index.cgi;</div><div class="line">            <span class="title">fastcgi_param</span>  SCRIPT_FILENAME  <span class="variable">$document_root</span><span class="variable">$fastcgi_script_name</span>;</div><div class="line">            <span class="title">include</span>        fastcgi_params;</div><div class="line">        }</div></pre></td></tr></table></figure>
+
+<h4 id="重启服务测试">重启服务测试</h4>
+<p><code>#: systemctl restart php-fpm</code><br><code>#: systemctl restart fcgiwrap</code><br><code>#: systemctl restart nginx</code></p>
+<p>编写一个简单的php脚本：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="php"><span class="preprocessor">&lt;?php</span></span></div><div class="line">    phpinfo();</div><div class="line"><span class="preprocessor">?&gt;</span></div></pre></td></tr></table></figure>
+
+<p>保存为—test.php—. 放入 <em><code>/usr/share/nginx/html</code></em> (<strong>如果你修改过默认的网站路径，放入你修改的路径中</strong>)</p>
+<p>浏览器远程访问： <code>http://*.*.*.*/test.php</code></p>
+<ul>
+<li>CGI脚本同上，自测。</li>
+</ul>
+<p>有问题请留言,或者发邮件：<a href="mailto:hz@huaixaoz.com" target="_blank" rel="external">hz@huaixiaoz.com</a>。 可以参考Archlinux的<a href="https://wiki.archlinux.org" target="_blank" rel="external"><em>WIKI</em></a></p>
+
+        
+      </div>
+      <footer>
+        
+          
+          
+  
+  <div class="tags">
+    <a href="/tags/php/">php</a>
+  </div>
+
+          <div class="share">
+  
+
+    
+
+    
+      <div class="g-plusone"></div>
+
+      <script type="text/javascript">
+        window.___gcfg = {lang: 'en-GB'};
+
+        (function() {
+          var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+          po.src = 'https://apis.google.com/js/platform.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+        })();
+      </script>
+    
+
+    
+      <a href="https://twitter.com/share" class="twitter-share-button" data-via="halfer53">Tweet</a>
+        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+    
+  
+</div>
+          
+<nav class="article-nav clearfix">
+ 
+ <div class="article-prev" >
+ <a href="/2014/08/17/svn-to-git/" title="svn to git">
+  <i class="fa fa-long-arrow-left"></i>
+  <span>
+  svn to git</span>
+</a>
+</div>
+
+
+</nav>
+
+        
+        <div class="clearfix"></div>
+      </footer>
+    </div>
+</article>
+
+
+<section id="comment">
+  <h2 class="title">留言</h2>
+
+  
+
+     <!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="2014/08/16/Archlinux-下LNMP环境配置以及CGI脚本支持/" data-title="Archlinux 下LNMP环境配置以及CGI脚本支持" data-url="http://huaixiaoz.com2014/08/16/Archlinux-下LNMP环境配置以及CGI脚本支持/"></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"huaixiaoz"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+<!-- 多说公共JS代码 end -->
+
+  
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright"><div class="padding">
+	
+	  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="搜索">
+    <input type="hidden" name="q" value="site:huaixiaoz.com">
+  </form>
+</div>
+	
+	  
+<div class="widget recent-post">
+  <h3 class="title">最新文章</h3>
+  <ul class="entry">
+    
+      <li>
+        <a href="/2014/08/31/vimrc-setup-custom/">vimrc setup custom</a>
+      </li>
+    
+      <li>
+        <a href="/2014/08/31/随笔随记/">随笔随记</a>
+      </li>
+    
+      <li>
+        <a href="/2014/08/31/lrzsz-使用客户端远程ssh登录linux主机的妙用/">lrzsz 使用客户端远程ssh登录linux主机的妙用</a>
+      </li>
+    
+      <li>
+        <a href="/2014/08/31/近期手记/">近期手记</a>
+      </li>
+    
+      <li>
+        <a href="/2014/08/31/国内访问google/">国内访问google</a>
+      </li>
+    
+  </ul>
+</div>
+
+	
+	  
+	
+	  
+<div class="widget tag">
+  <h3 class="title">标签</h3>
+  
+    <a href="/tags/google/">google<small>1</small></a>
+  
+    <a href="/tags/lrzsz/">lrzsz<small>1</small></a>
+  
+    <a href="/tags/maya/">maya<small>1</small></a>
+  
+    <a href="/tags/note/">note<small>1</small></a>
+  
+    <a href="/tags/osx/">osx<small>2</small></a>
+  
+    <a href="/tags/php/">php<small>1</small></a>
+  
+    <a href="/tags/study/">study<small>1</small></a>
+  
+    <a href="/tags/svn/">svn<small>1</small></a>
+  
+    <a href="/tags/vim/">vim<small>1</small></a>
+  
+    <a href="/tags/wordpress/">wordpress<small>1</small></a>
+  
+</div>
+
+	
+</div></aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="padding">
+	<div class="alignleft">
+	  
+	  &copy; 2014 huaixiaoz
+	  
+	  Powerd by <a href="http://hexo.io/" target="_blank">hexo</a>
+	  and Theme by <a href="https://github.com/halfer53/metro-light" target="_blank">metro-light</a>
+	</div>
+
+	<div class="alignright">
+		
+		
+		
+		
+		
+		
+		
+	</div>
+
+	<div class="clearfix"></div>
+</div>
+
+<div class="scroll-top"><i class="fa fa-arrow-circle-up"></i></div></footer>
+  
+
+ <script type="text/javascript">
+var duoshuoQuery = {short_name:"huaixiaoz"};
+(function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = 'http://static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+</script>
+
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/3.0.4/jquery.imagesloaded.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+<script type="text/javascript">
+$(window).scroll(function() {
+
+    if($(this).scrollTop() > 400) {
+        $('.scroll-top').fadeIn(200);
+    } else {
+        $('.scroll-top').fadeOut(200);
+    }
+});
+
+$('.scroll-top').bind('click', function(e) {
+    e.preventDefault();
+    $('body,html').animate({scrollTop:0},200);
+});
+</script>
+
+
+</body>
+</html>

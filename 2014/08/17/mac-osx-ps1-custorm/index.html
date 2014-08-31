@@ -1,0 +1,451 @@
+<!DOCTYPE HTML>
+
+    <html lang="zh-Hans">
+  
+<head>
+  <meta charset="utf-8">
+  
+  <title>mac osx ps1 custorm | huaixiaoz blog</title>
+  <meta name="author" content="huaixiaoz">
+  
+  <meta name="description" content="I am here, as always.">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="mac osx ps1 custorm"/>
+  <meta property="og:site_name" content="huaixiaoz blog"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  
+    <meta http-equiv="Content-Language" content="zh-Hans"/>
+  
+
+  <link href="/img/favicon.png" rel="icon">
+  
+    <link rel="apple-touch-icon" href="/img/apple-icon.png">
+    <link rel="apple-touch-icon-precomposed" href="/img/apple-icon.png">
+    
+
+  <link rel="alternate" href="/atom.xml" title="huaixiaoz blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+
+  <style type="text/css">
+  /* Tim Pietrusky advanced checkbox hack (Android <= 4.1.2) */
+body{ -webkit-animation: bugfix infinite 1s; }
+@-webkit-keyframes bugfix { from {padding:0;} to {padding:0;} }
+</style>
+
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-53885599-1', 'auto');
+  ga('send', 'pageview');
+ 
+</script>
+
+
+
+
+  
+    <!-- 360 Font and Baidu CDN in China -->
+    
+      <link href='http://fonts.useso.com/css?family=Open+Sans:300,400|Playball' rel='stylesheet' type='text/css'>
+    
+  <link href='http://apps.bdimg.com/libs/fontawesome/4.0.3/css/font-awesome.min.css' rel='stylesheet' type='text/css'>
+  <script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
+  
+
+
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="padding">
+	<div class="alignleft logo">
+	  <h1><a href="/">huaixiaoz blog</a></h1>
+	</div>
+	<nav id="main-nav" class="alignright">
+		<input type="checkbox" id="toggle" />
+		<label for="toggle" class="toggle" data-open="Main Menu" data-close="Close Menu" onclick><i class="fa fa-bars"></i></label>
+	  <ul class="menu">
+	    
+	      <li><a href="/">Home</a></li>
+	    
+	      <li><a href="/archives">Archives</a></li>
+	    
+	      <li><a href="/about">About</a></li>
+	    
+	    
+	  </ul>
+	</nav>
+	<div class="clearfix"></div>
+</div>
+</header>
+  <div id="page-heading-wrap">
+  	<div class="inner">
+      <div class="padding">
+    		
+          <h1>mac osx ps1 custorm</h1>
+          <ul>
+            <li>
+              <span class="heading-span">Posted on: </span>
+              <time datetime="2014-08-17T05:25:15.000Z">8月 17 2014</time>
+            </li>
+            
+              <li>
+                <span class="heading-span">By: </span>
+
+                
+                  <a href="/">huaixiaoz</a>
+                
+
+              </li>
+            
+            <li>
+              <span class="heading-span">With: </span>
+              
+
+                <a href="#ds-thread"><span class="ds-thread-count" data-thread-key="2014/08/17/mac-osx-ps1-custorm/" data-count-type="comments"></span></a>
+              
+            </li>
+          </ul>
+        
+      </div>
+  	</div>
+  </div>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper" class="padding"><article class="post">
+  
+  
+    <div class="post-content">
+  
+      
+      <div class="entry">
+        
+          <h2 id="Mac_osX_Linux终端的自定义">Mac osX Linux终端的自定义</h2>
+<p>对于经常使用终端的用户来说，好的终端配置以及终端信息显示都是有用的甚至是酷的；<br>针对bash来说，能定义的东西更多，对osx和linux以及大部分的<code>*inx</code>系统来说，基本都标配<a href="http://gnu.april.org/software/bash/" target="_blank" rel="external"><code>bash</code></a>; </p>
+<ul>
+<li>下载参见 ： <a href="http://ftp.gnu.org/gnu/bash/" target="_blank" rel="external">bash源码下载</a></li>
+<li>manual在线查看以及下载： <a href="http://gnu.april.org/software/bash/manual/" target="_blank" rel="external"> gnu bash manual</a></li>
+<li>faq: <a href="ftp://ftp.cwru.edu/pub/bash/FAQ" target="_blank" rel="external">faq</a></li>
+<li>bashtop: <a href="http://tiswww.case.edu/php/chet/bash/bashtop.html" target="_blank" rel="external">bashtop</a></li>
+<li>wikimedia: <a href="http://en.wikipedia.org/wiki/Bash" target="_blank" rel="external">bash@wikimedia</a></li>
+</ul>
+<h4 id="一些有用的参考资料：">一些有用的参考资料：</h4>
+<ul>
+<li><a href="https://wiki.archlinux.org/index.php/Bash" target="_blank" rel="external">archlinux bash wiki</a> archwiki for bash </li>
+<li><a href="http://ss64.com/osx/" target="_blank" rel="external">http://ss64.com/osx</a> —— a commond  manual for osx <code>a-z</code></li>
+<li><a href="https://developer.apple.com/library/mac/documentation/Darwin/Reference/ManPages/man1/bash.1.html" target="_blank" rel="external">here is the apple osx manual for bash</a></li>
+<li><a href="http://oreilly.com/pub/a/mac/2004/02/24/bash.html" target="_blank" rel="external">mac osx bash</a></li>
+<li><a href="http://tldp.org/LDP/abs/html/" target="_blank" rel="external">advance bash</a></li>
+<li><a href="http://wiki.bash-hackers.org/doku.php" target="_blank" rel="external">bash hack</a></li>
+<li><a href="https://www.gnu.org/software/bash/manual/bashref.html" target="_blank" rel="external">gnu bash manual</a></li>
+<li><a href="http://www.aosabook.org/en/bash.html" target="_blank" rel="external">book about bash</a></li>
+</ul>
+<a id="more"></a>
+
+
+<h4 id="针对bash的补全：">针对bash的补全：</h4>
+<ul>
+<li>archlinux： 参见archlinux<a href="https://wiki.archlinux.org" target="_blank" rel="external">官方wiki</a></li>
+<li><p>mac osx: <a href="http://brew.sh/" target="_blank" rel="external">homebrew</a></p>
+<p>  if not install brew, install as follow:<br>  <code>ruby -e &quot;$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)&quot;</code><br>  then change this if you want to use tools from brew: edit <code>/etc/paths</code>; change <code>/usr/local/bin</code> to first</p>
+<p>  /etc/paths</p>
+</li>
+</ul>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">/usr/<span class="keyword">local</span>/bin</div><div class="line">/usr/bin</div><div class="line">/bin</div><div class="line">/usr/sbin</div><div class="line">/sbin</div></pre></td></tr></table></figure>
+
+<ul>
+<li>安装 bash(非必须，不过osx默认bash版本较老，可以换掉了)、 bash-completion<blockquote>
+<p><code>$ brew install bash bash-completion</code>       </p>
+</blockquote>
+</li>
+<li>设置bash加载：<br>  add this line to <code>~/.bash_profile</code></li>
+</ul>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="string">[[ -e /usr/local/etc/bash_completion ]]</span> && . /usr/<span class="keyword">local</span>/etc/bash_completion</div></pre></td></tr></table></figure>
+
+<h4 id="终端bash环境PS1">终端bash环境PS1</h4>
+<ul>
+<li><p>Mac默认的终端:</p>
+<blockquote>
+<p><code>PS1=&#39;\h:\W \u\$ &#39;</code>  =====&gt;  <code>/etc/bashrc</code></p>
+</blockquote>
+<p>  <code>huaixiaozs-Mac-BookPro:~ huaixiaoz$ -</code></p>
+</li>
+<li><p>archlinux终端：</p>
+<blockquote>
+<p><code>PS1=&#39;[\u@\h \W]\$ &#39;</code> =====&gt; <code>/etc/bashrc</code></p>
+</blockquote>
+<p>  <code>[huaixiaoz@archlinux ~]$ _</code></p>
+</li>
+</ul>
+<h2 id="Now_is_our_custorm_PS1">Now is our custorm PS1</h2>
+<ol>
+<li><p><code>PS1=&#39;\[\e[1;32m\][\u@\h \W]\$\[\e[0m\] &#39;</code></p>
+<blockquote>
+<p><img src="http://huaixiaoz-uploads.stor.sinaapp.com/3746358481.png" alt="ps1 _01"></p>
+</blockquote>
+</li>
+<li><p><code>PS1=&#39;\[\e[1;31m\][\u@\h \W]\$\[\e[0m\] &#39;</code></p>
+<blockquote>
+<p><img src="http://huaixiaoz-uploads.stor.sinaapp.com/3901079912.png" alt="ps1 _02">    </p>
+</blockquote>
+</li>
+<li><code>PS1=&quot;\[\033[0;37m\]\342\224\214\342\224\200\$([[ \$? != 0 ]] &amp;&amp; echo \&quot;[\[\033[0;31m\]\342\234\227\[\033[0;37m\]]\342\224\200\&quot;)[$(if [[ ${EUID} == 0 ]]; then echo &#39;\[\033[0;31m\]\h&#39;; else echo &#39;\[\033[0;33m\]\u\[\033[0;37m\]@\[\033[0;96m\]\h&#39;; fi)\[\033[0;37m\]]\342\224\200[\[\033[0;32m\]\w\[\033[0;37m\]]\n\[\033[0;37m\]\342\224\224\342\224\200\342\224\200\342\225\274 \[\033[0m\]&quot;</code><blockquote>
+<p><img src="http://huaixiaoz-uploads.stor.sinaapp.com/3110898162.png" alt="ps1"></p>
+</blockquote>
+</li>
+<li><code>PS1=&quot;\n\[\033[1;37m\]\342\224\214($(if [[ ${EUID} == 0 ]]; then echo &#39;\[\033[01;31m\]\h&#39;; else echo &#39;\[\033[01;34m\]\u@\h&#39;; fi)\[\033[1;37m\])\342\224\200(\$(if [[ \$? == 0 ]]; then echo \&quot;\[\033[01;32m\]\342\234\223\&quot;; else echo \&quot;\[\033[01;31m\]\342\234\227\&quot;; fi)\[\033[1;37m\])\342\224\200(\[\033[1;34m\]\@ \d\[\033[1;37m\])\[\033[1;37m\]\n\342\224\224\342\224\200(\[\033[1;32m\]\w\[\033[1;37m\])\342\224\200(\[\033[1;32m\]\$(ls -1 | wc -l | sed &#39;s: ::g&#39;) files, \$(ls -sh | head -n1 | sed &#39;s/total //&#39;)b\[\033[1;37m\])\342\224\200&gt; \[\033[0m\]&quot;</code><blockquote>
+<p><img src="http://huaixiaoz-uploads.stor.sinaapp.com/3751989405.png" alt="ps1"></p>
+</blockquote>
+</li>
+</ol>
+<p>上面的<a href="https://wiki.archlinux.org/index.php/System%27s_Color_Bash_Prompt" target="_blank" rel="external">PS1配置来源</a></p>
+<hr>
+<p>还有更多自定义的PS1和更多的bash特性，在此不一一列举了，</p>
+<p>Useful links: </p>
+<ul>
+<li><a href="https://developer.apple.com/library/mac/documentation/Darwin/Reference/ManPages/" target="_blank" rel="external">Apple osx manuals</a></li>
+</ul>
+
+        
+      </div>
+      <footer>
+        
+          
+          
+  
+  <div class="tags">
+    <a href="/tags/osx/">osx</a>
+  </div>
+
+          <div class="share">
+  
+
+    
+
+    
+      <div class="g-plusone"></div>
+
+      <script type="text/javascript">
+        window.___gcfg = {lang: 'en-GB'};
+
+        (function() {
+          var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+          po.src = 'https://apis.google.com/js/platform.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+        })();
+      </script>
+    
+
+    
+      <a href="https://twitter.com/share" class="twitter-share-button" data-via="halfer53">Tweet</a>
+        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+    
+  
+</div>
+          
+<nav class="article-nav clearfix">
+ 
+ <div class="article-prev" >
+ <a href="/2014/08/31/wordpress多用户技巧以及国内访问优化/" title="wordpress多用户技巧以及国内访问优化">
+  <i class="fa fa-long-arrow-left"></i>
+  <span>
+  wordpress多用户技巧以及国内访问优化</span>
+</a>
+</div>
+
+
+<div class="article-next">
+<a href="/2014/08/17/在acer-v5-573g上安装osx/"  title="在acer v5-573g上安装osx">
+ <span>在acer v5-573g上安装osx
+</span>
+<i class="fa fa-long-arrow-right"></i>
+</a>
+</div>
+
+</nav>
+
+        
+        <div class="clearfix"></div>
+      </footer>
+    </div>
+</article>
+
+
+<section id="comment">
+  <h2 class="title">留言</h2>
+
+  
+
+     <!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="2014/08/17/mac-osx-ps1-custorm/" data-title="mac osx ps1 custorm" data-url="http://huaixiaoz.com2014/08/17/mac-osx-ps1-custorm/"></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"huaixiaoz"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+<!-- 多说公共JS代码 end -->
+
+  
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright"><div class="padding">
+	
+	  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="搜索">
+    <input type="hidden" name="q" value="site:huaixiaoz.com">
+  </form>
+</div>
+	
+	  
+<div class="widget recent-post">
+  <h3 class="title">最新文章</h3>
+  <ul class="entry">
+    
+      <li>
+        <a href="/2014/08/31/vimrc-setup-custom/">vimrc setup custom</a>
+      </li>
+    
+      <li>
+        <a href="/2014/08/31/随笔随记/">随笔随记</a>
+      </li>
+    
+      <li>
+        <a href="/2014/08/31/lrzsz-使用客户端远程ssh登录linux主机的妙用/">lrzsz 使用客户端远程ssh登录linux主机的妙用</a>
+      </li>
+    
+      <li>
+        <a href="/2014/08/31/近期手记/">近期手记</a>
+      </li>
+    
+      <li>
+        <a href="/2014/08/31/国内访问google/">国内访问google</a>
+      </li>
+    
+  </ul>
+</div>
+
+	
+	  
+	
+	  
+<div class="widget tag">
+  <h3 class="title">标签</h3>
+  
+    <a href="/tags/google/">google<small>1</small></a>
+  
+    <a href="/tags/lrzsz/">lrzsz<small>1</small></a>
+  
+    <a href="/tags/maya/">maya<small>1</small></a>
+  
+    <a href="/tags/note/">note<small>1</small></a>
+  
+    <a href="/tags/osx/">osx<small>2</small></a>
+  
+    <a href="/tags/php/">php<small>1</small></a>
+  
+    <a href="/tags/study/">study<small>1</small></a>
+  
+    <a href="/tags/svn/">svn<small>1</small></a>
+  
+    <a href="/tags/vim/">vim<small>1</small></a>
+  
+    <a href="/tags/wordpress/">wordpress<small>1</small></a>
+  
+</div>
+
+	
+</div></aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="padding">
+	<div class="alignleft">
+	  
+	  &copy; 2014 huaixiaoz
+	  
+	  Powerd by <a href="http://hexo.io/" target="_blank">hexo</a>
+	  and Theme by <a href="https://github.com/halfer53/metro-light" target="_blank">metro-light</a>
+	</div>
+
+	<div class="alignright">
+		
+		
+		
+		
+		
+		
+		
+	</div>
+
+	<div class="clearfix"></div>
+</div>
+
+<div class="scroll-top"><i class="fa fa-arrow-circle-up"></i></div></footer>
+  
+
+ <script type="text/javascript">
+var duoshuoQuery = {short_name:"huaixiaoz"};
+(function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = 'http://static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+</script>
+
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/3.0.4/jquery.imagesloaded.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+<script type="text/javascript">
+$(window).scroll(function() {
+
+    if($(this).scrollTop() > 400) {
+        $('.scroll-top').fadeIn(200);
+    } else {
+        $('.scroll-top').fadeOut(200);
+    }
+});
+
+$('.scroll-top').bind('click', function(e) {
+    e.preventDefault();
+    $('body,html').animate({scrollTop:0},200);
+});
+</script>
+
+
+</body>
+</html>

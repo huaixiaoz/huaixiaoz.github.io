@@ -1,0 +1,400 @@
+<!DOCTYPE HTML>
+
+    <html lang="zh-Hans">
+  
+<head>
+  <meta charset="utf-8">
+  
+  <title>wordpress多用户技巧以及国内访问优化 | huaixiaoz blog</title>
+  <meta name="author" content="huaixiaoz">
+  
+  <meta name="description" content="I am here, as always.">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="wordpress多用户技巧以及国内访问优化"/>
+  <meta property="og:site_name" content="huaixiaoz blog"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  
+    <meta http-equiv="Content-Language" content="zh-Hans"/>
+  
+
+  <link href="/img/favicon.png" rel="icon">
+  
+    <link rel="apple-touch-icon" href="/img/apple-icon.png">
+    <link rel="apple-touch-icon-precomposed" href="/img/apple-icon.png">
+    
+
+  <link rel="alternate" href="/atom.xml" title="huaixiaoz blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+
+  <style type="text/css">
+  /* Tim Pietrusky advanced checkbox hack (Android <= 4.1.2) */
+body{ -webkit-animation: bugfix infinite 1s; }
+@-webkit-keyframes bugfix { from {padding:0;} to {padding:0;} }
+</style>
+
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-53885599-1', 'auto');
+  ga('send', 'pageview');
+ 
+</script>
+
+
+
+
+  
+    <!-- 360 Font and Baidu CDN in China -->
+    
+      <link href='http://fonts.useso.com/css?family=Open+Sans:300,400|Playball' rel='stylesheet' type='text/css'>
+    
+  <link href='http://apps.bdimg.com/libs/fontawesome/4.0.3/css/font-awesome.min.css' rel='stylesheet' type='text/css'>
+  <script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
+  
+
+
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="padding">
+	<div class="alignleft logo">
+	  <h1><a href="/">huaixiaoz blog</a></h1>
+	</div>
+	<nav id="main-nav" class="alignright">
+		<input type="checkbox" id="toggle" />
+		<label for="toggle" class="toggle" data-open="Main Menu" data-close="Close Menu" onclick><i class="fa fa-bars"></i></label>
+	  <ul class="menu">
+	    
+	      <li><a href="/">Home</a></li>
+	    
+	      <li><a href="/archives">Archives</a></li>
+	    
+	      <li><a href="/about">About</a></li>
+	    
+	    
+	  </ul>
+	</nav>
+	<div class="clearfix"></div>
+</div>
+</header>
+  <div id="page-heading-wrap">
+  	<div class="inner">
+      <div class="padding">
+    		
+          <h1>wordpress多用户技巧以及国内访问优化</h1>
+          <ul>
+            <li>
+              <span class="heading-span">Posted on: </span>
+              <time datetime="2014-08-31T02:44:58.000Z">8月 31 2014</time>
+            </li>
+            
+              <li>
+                <span class="heading-span">By: </span>
+
+                
+                  <a href="/">huaixiaoz</a>
+                
+
+              </li>
+            
+            <li>
+              <span class="heading-span">With: </span>
+              
+
+                <a href="#ds-thread"><span class="ds-thread-count" data-thread-key="2014/08/31/wordpress多用户技巧以及国内访问优化/" data-count-type="comments"></span></a>
+              
+            </li>
+          </ul>
+        
+      </div>
+  	</div>
+  </div>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper" class="padding"><article class="post">
+  
+  
+    <div class="post-content">
+  
+      
+      <div class="entry">
+        
+          <h3 id="wordpress如何在一个空间使用一个数据库来存储多份数据？">wordpress如何在一个空间使用一个数据库来存储多份数据？</h3>
+<p>原理很简单： 根据表头的区别，绑定多个域名到一个ip，根据域名不同而使用不同表头的表。</p>
+<p>修改<code>wp-config.php</code></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (<span class="variable">$_SERVER</span>[<span class="string">"HTTP_HOST"</span>]==<span class="string">"xxx1"</span>)</div><div class="line"> {</div><div class="line">     <span class="variable">$table_prefix</span>  = <span class="string">'wp_'</span>;</div><div class="line"> }</div><div class="line"><span class="keyword">else</span> <span class="keyword">if</span>(<span class="variable">$_SERVER</span>[<span class="string">"HTTP_HOST"</span>]==<span class="string">"xxx2"</span>)</div><div class="line">{</div><div class="line">    <span class="variable">$table_prefix</span>  = <span class="string">'wptt_'</span>;</div><div class="line">}</div><div class="line"><span class="keyword">else</span></div><div class="line">{</div><div class="line">    <span class="variable">$table_prefix</span>  = <span class="string">'wp_'</span>;</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<blockquote>
+<p><code>xxx1</code>和<code>xxx2</code>是域名， 如 <code>i.huaixiaoz.com</code>本站的域名， 或者 <code>test.huaixiaoz.com</code></p>
+</blockquote>
+<h3 id="Google_fonts">Google fonts</h3>
+<p>google越来越在中国不受欢迎了、、<br><a href="http://i.huaixiaoz.com/hack/google_in-1.html" target="_blank" rel="external">访问google方法</a></p>
+<ul>
+<li><p>修改wordpress: <code>wp-includes/script.php</code></p>
+<blockquote>
+<p>大概在533行的位置；<br>  替换<code>$open_sans_font_url =
+  &quot;//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,300,400,600&amp;subset=$subsets&quot;;</code><br>  为<code>$open_sans_font_url =
+  &quot;//fonts.useso.com/css?family=Open+Sans:300italic,400italic,600italic,300,400,600&amp;subset=$subsets&quot;;</code><br>  其实也就是吧连接中的<code>googleapis</code>替换为<code>useso</code>: 国内360的镜像源。</p>
+<ul>
+<li>对于主题中的<code>googleapis</code>同理，替换即可。 一般在主题的<code>function.php</code>文件中。</li>
+</ul>
+</blockquote>
+<p>  对于能访问主机也就是能ssh登录的用户来说，直接登录替换即可。<br>  命令如下：<br>  <code>grep googleapis ./* -R |awk -F: {&#39;print $1&#39;} | xargs sed -i  -e &#39;s/googleapis/useso/g&#39;</code></p>
+<pre><code>                    当然，你也可以使用插件来禁用googleapis。
+</code></pre></li>
+</ul>
+<h3 id="wordpress修改为中文办法">wordpress修改为中文办法</h3>
+<ul>
+<li>修改<code>config.php</code>中 </li>
+</ul>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">define</span></span>(<span class="string">'WPLANG'</span>, <span class="string">'zh_CN'</span>);</div></pre></td></tr></table></figure>
+
+<p>更新即可。</p>
+<ul>
+<li>不行的话，就手动复制中文语言包到<code>wp-content/languages</code>下。</li>
+</ul>
+
+        
+      </div>
+      <footer>
+        
+          
+          
+  
+  <div class="tags">
+    <a href="/tags/wordpress/">wordpress</a>
+  </div>
+
+          <div class="share">
+  
+
+    
+
+    
+      <div class="g-plusone"></div>
+
+      <script type="text/javascript">
+        window.___gcfg = {lang: 'en-GB'};
+
+        (function() {
+          var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+          po.src = 'https://apis.google.com/js/platform.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+        })();
+      </script>
+    
+
+    
+      <a href="https://twitter.com/share" class="twitter-share-button" data-via="halfer53">Tweet</a>
+        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+    
+  
+</div>
+          
+<nav class="article-nav clearfix">
+ 
+ <div class="article-prev" >
+ <a href="/2014/08/31/国内访问google/" title="国内访问google">
+  <i class="fa fa-long-arrow-left"></i>
+  <span>
+  国内访问google</span>
+</a>
+</div>
+
+
+<div class="article-next">
+<a href="/2014/08/17/mac-osx-ps1-custorm/"  title="mac osx ps1 custorm">
+ <span>mac osx ps1 custorm
+</span>
+<i class="fa fa-long-arrow-right"></i>
+</a>
+</div>
+
+</nav>
+
+        
+        <div class="clearfix"></div>
+      </footer>
+    </div>
+</article>
+
+
+<section id="comment">
+  <h2 class="title">留言</h2>
+
+  
+
+     <!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="2014/08/31/wordpress多用户技巧以及国内访问优化/" data-title="wordpress多用户技巧以及国内访问优化" data-url="http://huaixiaoz.com2014/08/31/wordpress多用户技巧以及国内访问优化/"></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"huaixiaoz"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+<!-- 多说公共JS代码 end -->
+
+  
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright"><div class="padding">
+	
+	  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="搜索">
+    <input type="hidden" name="q" value="site:huaixiaoz.com">
+  </form>
+</div>
+	
+	  
+<div class="widget recent-post">
+  <h3 class="title">最新文章</h3>
+  <ul class="entry">
+    
+      <li>
+        <a href="/2014/08/31/vimrc-setup-custom/">vimrc setup custom</a>
+      </li>
+    
+      <li>
+        <a href="/2014/08/31/随笔随记/">随笔随记</a>
+      </li>
+    
+      <li>
+        <a href="/2014/08/31/lrzsz-使用客户端远程ssh登录linux主机的妙用/">lrzsz 使用客户端远程ssh登录linux主机的妙用</a>
+      </li>
+    
+      <li>
+        <a href="/2014/08/31/近期手记/">近期手记</a>
+      </li>
+    
+      <li>
+        <a href="/2014/08/31/国内访问google/">国内访问google</a>
+      </li>
+    
+  </ul>
+</div>
+
+	
+	  
+	
+	  
+<div class="widget tag">
+  <h3 class="title">标签</h3>
+  
+    <a href="/tags/google/">google<small>1</small></a>
+  
+    <a href="/tags/lrzsz/">lrzsz<small>1</small></a>
+  
+    <a href="/tags/maya/">maya<small>1</small></a>
+  
+    <a href="/tags/note/">note<small>1</small></a>
+  
+    <a href="/tags/osx/">osx<small>2</small></a>
+  
+    <a href="/tags/php/">php<small>1</small></a>
+  
+    <a href="/tags/study/">study<small>1</small></a>
+  
+    <a href="/tags/svn/">svn<small>1</small></a>
+  
+    <a href="/tags/vim/">vim<small>1</small></a>
+  
+    <a href="/tags/wordpress/">wordpress<small>1</small></a>
+  
+</div>
+
+	
+</div></aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="padding">
+	<div class="alignleft">
+	  
+	  &copy; 2014 huaixiaoz
+	  
+	  Powerd by <a href="http://hexo.io/" target="_blank">hexo</a>
+	  and Theme by <a href="https://github.com/halfer53/metro-light" target="_blank">metro-light</a>
+	</div>
+
+	<div class="alignright">
+		
+		
+		
+		
+		
+		
+		
+	</div>
+
+	<div class="clearfix"></div>
+</div>
+
+<div class="scroll-top"><i class="fa fa-arrow-circle-up"></i></div></footer>
+  
+
+ <script type="text/javascript">
+var duoshuoQuery = {short_name:"huaixiaoz"};
+(function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = 'http://static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+</script>
+
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/3.0.4/jquery.imagesloaded.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+<script type="text/javascript">
+$(window).scroll(function() {
+
+    if($(this).scrollTop() > 400) {
+        $('.scroll-top').fadeIn(200);
+    } else {
+        $('.scroll-top').fadeOut(200);
+    }
+});
+
+$('.scroll-top').bind('click', function(e) {
+    e.preventDefault();
+    $('body,html').animate({scrollTop:0},200);
+});
+</script>
+
+
+</body>
+</html>

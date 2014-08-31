@@ -1,0 +1,330 @@
+<!DOCTYPE HTML>
+
+    <html lang="zh-Hans">
+  
+<head>
+  <meta charset="utf-8">
+  
+  <title>wordpress | huaixiaoz blog</title>
+  <meta name="author" content="huaixiaoz">
+  
+  <meta name="description" content="I am here, as always.">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+  <meta property="og:site_name" content="huaixiaoz blog"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  
+    <meta http-equiv="Content-Language" content="zh-Hans"/>
+  
+
+  <link href="/img/favicon.png" rel="icon">
+  
+    <link rel="apple-touch-icon" href="/img/apple-icon.png">
+    <link rel="apple-touch-icon-precomposed" href="/img/apple-icon.png">
+    
+
+  <link rel="alternate" href="/atom.xml" title="huaixiaoz blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+
+  <style type="text/css">
+  /* Tim Pietrusky advanced checkbox hack (Android <= 4.1.2) */
+body{ -webkit-animation: bugfix infinite 1s; }
+@-webkit-keyframes bugfix { from {padding:0;} to {padding:0;} }
+</style>
+
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-53885599-1', 'auto');
+  ga('send', 'pageview');
+ 
+</script>
+
+
+
+
+  
+    <!-- 360 Font and Baidu CDN in China -->
+    
+      <link href='http://fonts.useso.com/css?family=Open+Sans:300,400|Playball' rel='stylesheet' type='text/css'>
+    
+  <link href='http://apps.bdimg.com/libs/fontawesome/4.0.3/css/font-awesome.min.css' rel='stylesheet' type='text/css'>
+  <script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
+  
+
+
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="padding">
+	<div class="alignleft logo">
+	  <h1><a href="/">huaixiaoz blog</a></h1>
+	</div>
+	<nav id="main-nav" class="alignright">
+		<input type="checkbox" id="toggle" />
+		<label for="toggle" class="toggle" data-open="Main Menu" data-close="Close Menu" onclick><i class="fa fa-bars"></i></label>
+	  <ul class="menu">
+	    
+	      <li><a href="/">Home</a></li>
+	    
+	      <li><a href="/archives">Archives</a></li>
+	    
+	      <li><a href="/about">About</a></li>
+	    
+	    
+	  </ul>
+	</nav>
+	<div class="clearfix"></div>
+</div>
+</header>
+  <div id="page-heading-wrap">
+  	<div class="inner">
+      <div class="padding">
+    		
+          <h2>When you play with lina, you tend to get burned.</h2>
+        
+      </div>
+  	</div>
+  </div>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper" class="padding">
+<h2 class="archive-title tag">wordpress</h2>
+
+
+  
+    <article class="post">
+  
+  
+    <div class="post-content-index">
+  
+      
+        <header>
+          <div class="icon"></div>
+            
+    
+      <h1 class="title transition"><a href="/2014/08/31/wordpress多用户技巧以及国内访问优化/">wordpress多用户技巧以及国内访问优化</a></h1>
+    
+  
+          <ul>
+            <li>
+              <span class="heading-span">Posted on: </span>
+              <time datetime="2014-08-31T02:44:58.000Z">8月 31 2014</time>
+            </li>
+            
+              <li>
+                <span class="heading-span">By: </span>
+
+                
+                  <a href="/">huaixiaoz</a>
+                
+
+              </li>
+            
+            <li>
+              <span class="heading-span">With: </span>
+              
+
+                <a href="/2014/08/31/wordpress多用户技巧以及国内访问优化/#ds-thread"><span class="ds-thread-count" data-thread-key="2014/08/31/wordpress多用户技巧以及国内访问优化/" data-count-type="comments"></span></a>
+              
+          </ul>
+        </header>
+      
+      <div class="entry">
+        
+          
+            wordpress如何在一个空间使用一个数据库来存储多份数据？
+原理很简单： 根据表头的区别，绑定多个域名到一个ip，根据域名不同而使用不同表头的表。
+修改wp-config.php
+123456789101112if ($_SERVER[&quot;HTTP_HOST&quot;]==&quot;xxx1&quot;) {     $table_prefix  = &#39;wp_&#39;; }else if($_SERVER[&quot;HTTP_HOST&quot;]==&quot;xxx2&quot;){    $table_prefix  = &#39;wptt_&#39;;}else{    $table_prefix  = &#39;wp_&#39;;}
+
+
+xxx1和xxx2是域名， 如 i.huaixiaoz.com本站的域名， 或者 test.huaixiaoz.com
+
+Google fonts
+google越来越在中国不受欢迎了、、访问google方法
+
+修改wordpress: wp-includes/script.php
+
+大概在533行的位置；  替换$open_sans_font_url =
+  &amp;quot;//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,300,400,600&amp;amp;subset=$subsets&amp;quot;;  为$open_sans_font_url =
+  &amp;quot;//fonts.useso.com/css?family=Open+Sans:300italic,400italic,600italic,300,400,600&amp;amp;subset=$subsets&amp;quot;;  其实也就是吧连接中的googleapis替换为useso: 国内360的镜像源。
+
+对于主题中的googleapis同理，替换即可。 一般在主题的function
+          
+        
+      </div>
+      <footer>
+        
+          <div class="alignright">
+            <a href="/2014/08/31/wordpress多用户技巧以及国内访问优化/#more" class="more-link">Continue Reading<i class="fa fa-long-arrow-right fa-1"></i></a>
+          </div>
+        
+        <div class="clearfix"></div>
+      </footer>
+    </div>
+</article>
+
+
+
+  
+
+  <nav id="pagination">
+  
+  
+  <div class="clearfix"></div>
+</nav>
+</div></div>
+    <aside id="sidebar" class="alignright"><div class="padding">
+	
+	  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="搜索">
+    <input type="hidden" name="q" value="site:huaixiaoz.com">
+  </form>
+</div>
+	
+	  
+<div class="widget recent-post">
+  <h3 class="title">最新文章</h3>
+  <ul class="entry">
+    
+      <li>
+        <a href="/2014/08/31/vimrc-setup-custom/">vimrc setup custom</a>
+      </li>
+    
+      <li>
+        <a href="/2014/08/31/随笔随记/">随笔随记</a>
+      </li>
+    
+      <li>
+        <a href="/2014/08/31/lrzsz-使用客户端远程ssh登录linux主机的妙用/">lrzsz 使用客户端远程ssh登录linux主机的妙用</a>
+      </li>
+    
+      <li>
+        <a href="/2014/08/31/近期手记/">近期手记</a>
+      </li>
+    
+      <li>
+        <a href="/2014/08/31/国内访问google/">国内访问google</a>
+      </li>
+    
+  </ul>
+</div>
+
+	
+	  
+	
+	  
+<div class="widget tag">
+  <h3 class="title">标签</h3>
+  
+    <a href="/tags/google/">google<small>1</small></a>
+  
+    <a href="/tags/lrzsz/">lrzsz<small>1</small></a>
+  
+    <a href="/tags/maya/">maya<small>1</small></a>
+  
+    <a href="/tags/note/">note<small>1</small></a>
+  
+    <a href="/tags/osx/">osx<small>2</small></a>
+  
+    <a href="/tags/php/">php<small>1</small></a>
+  
+    <a href="/tags/study/">study<small>1</small></a>
+  
+    <a href="/tags/svn/">svn<small>1</small></a>
+  
+    <a href="/tags/vim/">vim<small>1</small></a>
+  
+    <a href="/tags/wordpress/">wordpress<small>1</small></a>
+  
+</div>
+
+	
+</div></aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="padding">
+	<div class="alignleft">
+	  
+	  &copy; 2014 huaixiaoz
+	  
+	  Powerd by <a href="http://hexo.io/" target="_blank">hexo</a>
+	  and Theme by <a href="https://github.com/halfer53/metro-light" target="_blank">metro-light</a>
+	</div>
+
+	<div class="alignright">
+		
+		
+		
+		
+		
+		
+		
+	</div>
+
+	<div class="clearfix"></div>
+</div>
+
+<div class="scroll-top"><i class="fa fa-arrow-circle-up"></i></div></footer>
+  
+
+ <script type="text/javascript">
+var duoshuoQuery = {short_name:"huaixiaoz"};
+(function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = 'http://static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+</script>
+
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/3.0.4/jquery.imagesloaded.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+<script type="text/javascript">
+$(window).scroll(function() {
+
+    if($(this).scrollTop() > 400) {
+        $('.scroll-top').fadeIn(200);
+    } else {
+        $('.scroll-top').fadeOut(200);
+    }
+});
+
+$('.scroll-top').bind('click', function(e) {
+    e.preventDefault();
+    $('body,html').animate({scrollTop:0},200);
+});
+</script>
+
+
+</body>
+</html>
